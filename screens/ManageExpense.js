@@ -1,5 +1,5 @@
 import { useContext, useLayoutEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 import Button from '../components/UI/Button';
 import IconButton from '../components/UI/IconButton';
@@ -29,14 +29,11 @@ function ManageExpense({ route, navigation }) {
 
   function confirmHandler() {
     if (isEditing) {
-      expensesCtx.updateExpense(
-        editedExpenseId,
-        {
-          description: 'Test!!!!',
-          amount: 29.99,
-          date: new Date('2022-05-20'),
-        }
-      );
+      expensesCtx.updateExpense(editedExpenseId, {
+        description: 'Test!!!!',
+        amount: 29.99,
+        date: new Date('2022-05-20'),
+      });
     } else {
       expensesCtx.addExpense({
         description: 'Test',
@@ -50,7 +47,7 @@ function ManageExpense({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.buttons}>
-        <Button style={styles.button} mode="flat" onPress={cancelHandler}>
+        <Button style={styles.button} mode='flat' onPress={cancelHandler}>
           Cancel
         </Button>
         <Button style={styles.button} onPress={confirmHandler}>
@@ -60,7 +57,7 @@ function ManageExpense({ route, navigation }) {
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
-            icon="trash"
+            icon='trash'
             color={GlobalStyles.colors.error500}
             size={36}
             onPress={deleteExpenseHandler}
