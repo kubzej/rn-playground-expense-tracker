@@ -32,12 +32,12 @@ function ManageExpense({ route, navigation }) {
     navigation.goBack();
   }
 
-  function confirmHandler(expenseData) {
+  async function confirmHandler(expenseData) {
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
     } else {
-      storeExpense(expenseData);
-      expensesCtx.addExpense(expenseData);
+      const id = await storeExpense(expenseData);
+      expensesCtx.addExpense({ ...expenseData, id: id });
     }
     navigation.goBack();
   }
@@ -53,7 +53,7 @@ function ManageExpense({ route, navigation }) {
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
-            icon="trash"
+            icon='trash'
             color={GlobalStyles.colors.error500}
             size={36}
             onPress={deleteExpenseHandler}
