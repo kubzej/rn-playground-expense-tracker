@@ -11,6 +11,7 @@ function RecentExpenses() {
   useEffect(() => {
     async function getExpenses() {
       const expenses = await fetchExpenses();
+      expensesCtx.setExpenses(expenses);
     }
 
     getExpenses();
@@ -26,8 +27,8 @@ function RecentExpenses() {
   return (
     <ExpensesOutput
       expenses={recentExpenses}
-      expensesPeriod='Last 7 Days'
-      fallbackText='No expenses registered for the last 7 days.'
+      expensesPeriod="Last 7 Days"
+      fallbackText="No expenses registered for the last 7 days."
     />
   );
 }

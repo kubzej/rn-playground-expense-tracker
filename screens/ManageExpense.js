@@ -1,7 +1,7 @@
 import { useContext, useLayoutEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import ExpenseForm from '../components/ManageExpense/ExpenseForm';
 
+import ExpenseForm from '../components/ManageExpense/ExpenseForm';
 import IconButton from '../components/UI/IconButton';
 import { GlobalStyles } from '../constants/styles';
 import { ExpensesContext } from '../store/expenses-context';
@@ -13,7 +13,6 @@ function ManageExpense({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
-  // get expense which we want to edit
   const selectedExpense = expensesCtx.expenses.find(
     (expense) => expense.id === editedExpenseId
   );
@@ -54,7 +53,7 @@ function ManageExpense({ route, navigation }) {
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
-            icon='trash'
+            icon="trash"
             color={GlobalStyles.colors.error500}
             size={36}
             onPress={deleteExpenseHandler}
